@@ -17,10 +17,20 @@ public class PlayerController : MonoBehaviour
         rigid.linearVelocity = new Vector3(InputManager.Instance.move.x*speed,0,InputManager.Instance.move.y*speed);
     }
 
-    private void Interact(){
-        if(InputManager.Instance.interact){
+    private void Interact()
+    {
+        if (InputManager.Instance.interact)
+        {
             Debug.Log("interacted");
             InputManager.Instance.interact = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            Debug.Log("감지된 아이템: " + other.name);
         }
     }
 }
