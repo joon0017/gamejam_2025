@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Move(){
-        rigid.linearVelocity=new Vector2(InputManager.Instance.move.x*speed,InputManager.Instance.move.y*speed);
+        rigid.linearVelocity = new Vector3(InputManager.Instance.move.x*speed,0,InputManager.Instance.move.y*speed);
     }
 
     private void Interact(){
