@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     {
         None, A, B, C, D
     }
+
+    private GameObject currentItem;
     private GameObject nearbyItem = null;   // item object를 저장할 변수
     private GameObject nearbyObstacle = null;   // 벽 접촉 여부를 판별해줄 변수 
 
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour
                 string itemName = nearbyItem.name;
                 Debug.Log("상호작용: " + itemName);
 
-                if (CanPickup(itemName))
+                if (CanPickup(nearbyItem))
                 {
                     Debug.Log("아이템 줍기 성공: " + itemName);
 
@@ -85,32 +87,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-    /*
-        상시 계속 감시하는 함수 
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Item"))
-            {
-                Debug.Log("감지된 아이템: " + other.name);
-            }
-        }
-    */
-
-    private bool CanPickup(string item) // 집을 수 있는 상태인지 확인
+/*
+Check if it is possible to pick up the item in parameter.
+if the player is not holding an item, the default return value is true. 
+The player is able to pickup anything if not holding anything.
+*/
+    private bool CanPickup(GameObject item)
     {
-        switch (item)
-        {
-            case "A":
-                return currentState == PlayerState.None || currentState == PlayerState.B;
-            case "B":
-                return currentState == PlayerState.None || currentState == PlayerState.A || currentState == PlayerState.C;
-            case "C":
-                return currentState == PlayerState.None || currentState == PlayerState.B;
-            default:
-                return false;
-        }
+        if(currentItem) return currentItem.GetComponent<Item>().CanPickup(item);
+        
+        return true;
     }
+
+
+
+    // private bool CanPickup(string item) // 집을 수 있는 상태인지 확인
+    // {
+    //     if(item)
+    //     switch (item)
+    //     {
+    //         case "A":
+    //             return currentState == PlayerState.None || currentState == PlayerState.B;
+    //         case "B":
+    //             return currentState == PlayerState.None || currentState == PlayerState.A || currentState == PlayerState.C;
+    //         case "C":
+    //             return currentState == PlayerState.None || currentState == PlayerState.B;
+    //         default:
+    //             return false;
+    //     }
+    // }
     private void ApplyState(string picked)
     {
         if (picked == "A" && currentState == PlayerState.B ||
@@ -138,6 +143,10 @@ public class PlayerController : MonoBehaviour
                 _ => currentState
             };
         }
+    }
+
+    private void SetCurrentItem(GameObject item){
+        currentItem = item;
     }
 
     private void OnTriggerEnter(Collider other)
