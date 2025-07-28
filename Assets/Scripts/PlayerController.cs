@@ -30,35 +30,37 @@ public class PlayerController : MonoBehaviour
     {
         if (InputManager.Instance.interact)
         {
+            InputManager.Instance.interact = false;
             // 1. 아이템 상호작용
-            if (nearbyItem != null)
+            if (nearbyItem)
             {
-                string itemName = nearbyItem.name;
+                string itemName = nearbyItem.GetComponent<Item>().itemName;
                 Debug.Log("상호작용: " + itemName);
-
                 if (CanPickup(nearbyItem))
                 {
+                    nearbyItem.GetComponent<Item>().PickupItem(gameObject);
+                    SetCurrentItem(nearbyItem);
                     Debug.Log("아이템 줍기 성공: " + itemName);
 
-                    foreach (Transform child in transform)
-                    {
-                        Destroy(child.gameObject);
-                    }
+                    // foreach (Transform child in transform)
+                    // {
+                    //     Destroy(child.gameObject);
+                    // }
 
-                    // item의 태그 삭제 
-                    nearbyItem.transform.SetParent(this.transform);
-                    nearbyItem.transform.localPosition = new Vector3(-1, 1, 0);
-                    nearbyItem.tag = "Untagged";
+                    // // item의 태그 삭제 
+                    // nearbyItem.transform.SetParent(this.transform);
+                    // nearbyItem.transform.localPosition = new Vector3(-1, 1, 0);
+                    // nearbyItem.tag = "Untagged";
 
-                    // item의 Collider 제거
-                    SphereCollider col = nearbyItem.GetComponent<SphereCollider>();
-                    if (col != null)
-                    {
-                        Destroy(col);
-                    }
+                    // // item의 Collider 제거
+                    // SphereCollider col = nearbyItem.GetComponent<SphereCollider>();
+                    // if (col != null)
+                    // {
+                    //     Destroy(col);
+                    // }
 
 
-                    ApplyState(itemName);
+                    // ApplyState(itemName);
 
                     nearbyItem = null;
                 }
@@ -94,56 +96,42 @@ The player is able to pickup anything if not holding anything.
 */
     private bool CanPickup(GameObject item)
     {
-        if(currentItem) return currentItem.GetComponent<Item>().CanPickup(item);
+        if(currentItem) {
+            Debug.Log("Currently holding an item... check if can pick up another");
+            return currentItem.GetComponent<Item>().CanPickup(item);
+        }
         
         return true;
     }
 
-
-
-    // private bool CanPickup(string item) // 집을 수 있는 상태인지 확인
+    // private void ApplyState(GameObject pickedItem)
     // {
-    //     if(item)
-    //     switch (item)
+    //     if (picked == "A" && currentState == PlayerState.B ||
+    //         picked == "B" && currentState == PlayerState.A)
     //     {
-    //         case "A":
-    //             return currentState == PlayerState.None || currentState == PlayerState.B;
-    //         case "B":
-    //             return currentState == PlayerState.None || currentState == PlayerState.A || currentState == PlayerState.C;
-    //         case "C":
-    //             return currentState == PlayerState.None || currentState == PlayerState.B;
-    //         default:
-    //             return false;
+    //         currentState = PlayerState.D;
+    //         nearbyItem.name = "D";
+    //         Debug.Log("A + B 조합 → D 상태 진입");
+    //     }
+    //     else if (picked == "C" && currentState == PlayerState.B ||
+    //              picked == "B" && currentState == PlayerState.C)
+    //     {
+    //         currentState = PlayerState.D;
+    //         nearbyItem.name = "D";
+    //         Debug.Log("B + C 조합 → D 상태 진입");
+    //     }
+    //     else
+    //     {
+    //         // 조합이 안 되면 현재 아이템 상태로 변경
+    //         currentState = picked switch
+    //         {
+    //             "A" => PlayerState.A,
+    //             "B" => PlayerState.B,
+    //             "C" => PlayerState.C,
+    //             _ => currentState
+    //         };
     //     }
     // }
-    private void ApplyState(string picked)
-    {
-        if (picked == "A" && currentState == PlayerState.B ||
-            picked == "B" && currentState == PlayerState.A)
-        {
-            currentState = PlayerState.D;
-            nearbyItem.name = "D";
-            Debug.Log("A + B 조합 → D 상태 진입");
-        }
-        else if (picked == "C" && currentState == PlayerState.B ||
-                 picked == "B" && currentState == PlayerState.C)
-        {
-            currentState = PlayerState.D;
-            nearbyItem.name = "D";
-            Debug.Log("B + C 조합 → D 상태 진입");
-        }
-        else
-        {
-            // 조합이 안 되면 현재 아이템 상태로 변경
-            currentState = picked switch
-            {
-                "A" => PlayerState.A,
-                "B" => PlayerState.B,
-                "C" => PlayerState.C,
-                _ => currentState
-            };
-        }
-    }
 
     private void SetCurrentItem(GameObject item){
         currentItem = item;

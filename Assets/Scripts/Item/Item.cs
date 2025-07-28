@@ -1,10 +1,13 @@
 using UnityEngine;
+using System;
 
 public abstract class Item : MonoBehaviour
 {
-    [SerializeField]public string itemName;
+    [SerializeField] public string itemName;
+    [SerializeField] protected GameObject itemObjectPrefab;
     // [SerializeField] protected GameObject[] cannotInteractItemList; // no need
-    [SerializeField] protected GameObject[] canInteractItemList;
+    [SerializeField] protected GameObject[] canInteractItemList;    
+    [SerializeField] protected GameObject[] combinedItemPrefabList;
 
 /*
 Function for picking up Items in general. This function does not
@@ -23,7 +26,20 @@ check legitimacy.
             Destroy(col);
         }
     }
-    public abstract bool CanPickup(GameObject itemObject);
+    public bool CanPickup(GameObject itemObject)
+    {
+        Debug.Log(itemObject);
+        if(Array.Exists(canInteractItemList, obj => obj == itemObject)){
+            Debug.Log("Pickedup item");
+            return true;
+        }
+        Debug.Log("cannot pickup item");
+        return false;
+    }
 
-    public abstract GameObject CreateCombinedItem(GameObject item_1, GameObject item_2);
+    public GameObject GetItemObjectPrefab(){
+        return itemObjectPrefab;
+    }
+
+    public abstract GameObject GetCombinedItem(GameObject itemObject);
 } 

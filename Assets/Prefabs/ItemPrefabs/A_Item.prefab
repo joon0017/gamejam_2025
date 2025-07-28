@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: A
+  itemObjectPrefab: {fileID: 8185125044590842894}
   canInteractItemList:
   - {fileID: 8185125044590842894, guid: f37f62aa07af9284cb2d3627ed33b67c, type: 3}
-  combinedItemPrefab: {fileID: 8185125044590842894, guid: 38636760e28433f4d88f625357900167, type: 3}
+  combinedItemPrefabList:
+  - {fileID: 8185125044590842894, guid: 38636760e28433f4d88f625357900167, type: 3}

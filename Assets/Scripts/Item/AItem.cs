@@ -3,18 +3,8 @@ using System;
 
 public class AItem : Item
 {
-    [SerializeField] private GameObject combinedItemPrefab;
-
-    public override bool CanPickup(GameObject itemObject)
-    {
-        Item otherItem = itemObject.GetComponent<Item>();
-        if (otherItem == null) return false;
-
-        return Array.Exists(canInteractItemList, obj => obj == itemObject);
-    }
-
-    public override GameObject CreateCombinedItem(GameObject item_1, GameObject item_2){
-        //TO-DO complete function
+    public override GameObject GetCombinedItem(GameObject itemObject){
+        if (itemObject == canInteractItemList[0]) return combinedItemPrefabList[0];
         return null;
     }
 }
