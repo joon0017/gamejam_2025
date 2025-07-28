@@ -29,7 +29,7 @@ check legitimacy.
     public bool CanPickup(GameObject itemObject)
     {
         Debug.Log(itemObject);
-        if(Array.Exists(canInteractItemList, obj => obj == itemObject)){
+        if(Array.Exists(canInteractItemList, obj => obj.GetComponent<Item>().itemName == itemObject.GetComponent<Item>().itemName)){
             Debug.Log("Pickedup item");
             return true;
         }

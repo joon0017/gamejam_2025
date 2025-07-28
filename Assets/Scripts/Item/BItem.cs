@@ -3,10 +3,9 @@ using System;
 
 public class BItem : Item
 {    
-     public override GameObject GetCombinedItem(GameObject itemObject){
-        if (itemObject == canInteractItemList[0]) return combinedItemPrefabList[0];
-        else if (itemObject == canInteractItemList[1]) return combinedItemPrefabList[0];
-        //etc..
+    public override GameObject GetCombinedItem(GameObject itemObject){
+        if (itemObject.GetComponent<Item>().itemName ==
+             canInteractItemList[0].GetComponent<Item>().itemName) return combinedItemPrefabList[0];
         return null;
     }
 }
