@@ -13,14 +13,25 @@ public class PlayerController : MonoBehaviour
         Interact();
     }
 
-    private void Move(){
-        rigid.linearVelocity=new Vector2(InputManager.Instance.move.x*speed,InputManager.Instance.move.y*speed);
+    private void Move()
+    {
+        rigid.linearVelocity = new Vector2(InputManager.Instance.move.x * speed, InputManager.Instance.move.y * speed);
     }
 
-    private void Interact(){
-        if(InputManager.Instance.interact){
+    private void Interact()
+    {
+        if (InputManager.Instance.interact)
+        {
             Debug.Log("interacted");
             InputManager.Instance.interact = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            Debug.Log("감지된 아이템: " + other.name);
         }
     }
 }
