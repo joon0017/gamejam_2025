@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7540030968226526921}
   - component: {fileID: 2253999044053518964}
   - component: {fileID: 5487448636221952582}
-  - component: {fileID: 4055303360961521748}
+  - component: {fileID: -4438560308140558313}
   m_Layer: 0
   m_Name: B_Item
   m_TagString: Item
@@ -109,7 +109,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4055303360961521748
+--- !u!114 &-4438560308140558313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,14 +118,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8185125044590842894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 007f0cfa9ba2d7b4291ab17f6dc241d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6422dc3604edb1b4298de89b04466cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: B
+  itemName: B_item
   itemObjectPrefab: {fileID: 8185125044590842894}
   canInteractItemList:
   - {fileID: 8185125044590842894, guid: 2509fd88c09681f46b0873fd62c6ac1f, type: 3}
-  - {fileID: 8185125044590842894}
   combinedItemPrefabList:
   - {fileID: 8185125044590842894, guid: 38636760e28433f4d88f625357900167, type: 3}
-  - {fileID: 8185125044590842894, guid: 17a7b77187601f44d8ebde6eab83014a, type: 3}
