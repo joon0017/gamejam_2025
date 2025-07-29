@@ -9,18 +9,7 @@ public class DItem : Item
     {
         throw new NotImplementedException("DItem does not support combination.");
     }
-
-    public override void ItemUniqueEffect()
-    {
-        throw new NotImplementedException("Not implemented");
-    }
-
-
-    public void OpenDoorFunction(){
-        Destroy(doorObject);
-        Debug.Log("Removed Wall");
-    }
-
+    
     public override void ItemUniqueEffect(){
         doorObject.GetComponent<Door>().openDoor();
         Debug.Log("Destroy door obstacle.");
