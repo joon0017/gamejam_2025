@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("상호작용: " + itemName);
                 if (CanPickup(nearbyItem))
                 {
-                    if(currentItem) {
+                    if (currentItem)
+                    {
                         //remove current items and replace with new item
                         GameObject newItem = Instantiate(currentItem.GetComponent<Item>().GetCombinedItem(nearbyItem)) as GameObject;
                         Destroy(currentItem);
@@ -40,7 +41,8 @@ public class PlayerController : MonoBehaviour
                         SetCurrentItem(newItem);
                         Debug.Log("new item created");
                     }
-                    else{
+                    else
+                    {
                         nearbyItem.GetComponent<Item>().PickupItem(gameObject);
                         SetCurrentItem(nearbyItem);
                         Debug.Log("아이템 줍기 성공: " + itemName);
@@ -55,18 +57,21 @@ public class PlayerController : MonoBehaviour
             }
 
             // 2. 벽 상호작용
-            if (nearbyObstacle)
+            // 주변에 벽이 있고 현 상태가 D일 경우 
+            if (nearbyObstacle && currentItem != null)
             {
-                if(currentItem.GetComponent<Item>().itemName == "D"){
-                    
+                // Debug.Log("벽이랑 상호작용 시작");
+                if (currentItem.GetComponent<Item>().itemName == "D")
+                {
                     currentItem.GetComponent<DItem>().setUniqueItem(nearbyObstacle);
                     currentItem.GetComponent<DItem>().ItemUniqueEffect();
                     Destroy(currentItem);
                 }
-                else
-                {
-                    Debug.Log("Cannot pass door because player is not holding D item");
-                }
+                // Debug.Log("벽이랑 상호작용 끝");
+            }
+            else
+            {
+                Debug.Log("Cannot pass door because player is not holding D item");
             }
         }
     }
@@ -101,7 +106,7 @@ The player is able to pickup anything if not holding anything.
         if (other.CompareTag("Obstacle"))
         {
             nearbyObstacle = other.gameObject;
-            // Debug.Log("벽 접촉");
+            Debug.Log("벽 접촉");
         }
     }
 
@@ -116,7 +121,7 @@ The player is able to pickup anything if not holding anything.
         if (other.CompareTag("Obstacle") && other.gameObject == nearbyObstacle)
         {
             nearbyObstacle = null;
-            // Debug.Log("벽 이탈");
+            Debug.Log("벽 이탈");
         }
     }
 
