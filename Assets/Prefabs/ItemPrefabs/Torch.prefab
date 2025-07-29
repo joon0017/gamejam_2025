@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2660831393489432206}
+  - component: {fileID: 8773796347100850544}
   m_Layer: 0
   m_Name: Torch
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +34,23 @@ Transform:
   - {fileID: 8964712078496116759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8773796347100850544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3580347676304787649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620d78196c5a0f14d8cd66efaca631ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Torch
+  itemObjectPrefab: {fileID: 3580347676304787649}
+  canInteractItemList: []
+  combinedItemPrefabList: []
+  interactingObject: {fileID: 0}
 --- !u!1 &5562961991431151644
 GameObject:
   m_ObjectHideFlags: 0
