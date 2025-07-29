@@ -125,4 +125,4 @@ MonoBehaviour:
   itemObjectPrefab: {fileID: 8185125044590842894}
   canInteractItemList: []
   combinedItemPrefabList: []
-  doorObject: {fileID: 2524663185857611236, guid: 1b98c8ba95295f5448e4c0cfe05094dd, type: 3}
+  doorObject: {fileID: 2171005734767323261, guid: 1b98c8ba95295f5448e4c0cfe05094dd, type: 3}

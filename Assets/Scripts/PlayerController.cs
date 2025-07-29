@@ -4,17 +4,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private Rigidbody rigid;
-
-    public enum PlayerState
-    {
-        None, A, B, C, D
-    }
-
     [SerializeField] private GameObject currentItem;
     private GameObject nearbyItem = null;   // item object를 저장할 변수
     private GameObject nearbyObstacle = null;   // 벽 접촉 여부를 판별해줄 변수 
 
-    private PlayerState currentState = PlayerState.None;
 
     void Update()
     {
@@ -62,17 +55,17 @@ public class PlayerController : MonoBehaviour
             }
 
             // 2. 벽 상호작용
-            if (nearbyObstacle != null)
+            if (nearbyObstacle)
             {
-                if (currentState == PlayerState.D)
-                {
-                    Debug.Log("D 상태로 벽 통과!");
-                    openTheDoor();
-                    RemoveD();
+                if(currentItem.GetComponent<Item>().itemName == "D"){
+                    
+                    currentItem.GetComponent<DItem>().setUniqueItem(nearbyObstacle);
+                    currentItem.GetComponent<DItem>().ItemUniqueEffect();
+                    Destroy(currentItem);
                 }
                 else
                 {
-                    Debug.Log("D 상태가 아니라 벽 통과 불가");
+                    Debug.Log("Cannot pass door because player is not holding D item");
                 }
             }
         }
@@ -124,37 +117,6 @@ The player is able to pickup anything if not holding anything.
         {
             nearbyObstacle = null;
             // Debug.Log("벽 이탈");
-        }
-    }
-
-    private void RemoveD()
-    {
-        currentState = PlayerState.None;
-
-        foreach (Transform child in transform)
-        {
-            if (child.name == "D")
-            {
-                Destroy(child.gameObject);
-                break;
-            }
-        }
-
-        Debug.Log("D 아이템 제거 완료");
-    }
-
-    private void openTheDoor() {
-         // 벽의 자식 제거
-        if (nearbyObstacle != null)
-        {
-            foreach (Transform child in nearbyObstacle.transform)
-            {
-                if (child.name == "RealWall")
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-            Debug.Log("벽 제거 완료");
         }
     }
 
