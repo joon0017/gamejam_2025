@@ -25,7 +25,6 @@ check legitimacy.
         {
             Destroy(col);
         }
-        gameObject.GetComponent<FlickeringLights>().ItemPickedUp();
     }
     public bool CanPickup(GameObject itemObject)
     {

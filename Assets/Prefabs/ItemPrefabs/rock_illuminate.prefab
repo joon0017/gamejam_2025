@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  isActive: 0
-  pLight: {fileID: 0}
+  isActive: 1
+  pLight: {fileID: 3909356103173624125}
 --- !u!95 &4695297007083605550
 Animator:
   serializedVersion: 7
