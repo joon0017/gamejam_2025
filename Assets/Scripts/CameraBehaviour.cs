@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private Vector3 positionOffset = new Vector3(0,2,-7);
+    [SerializeField] private Vector3 positionOffset = new Vector3(5,5,-10);
 
     //for debugging
     [SerializeField] private float tiltAroundX;
