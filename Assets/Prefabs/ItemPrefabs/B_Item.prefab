@@ -125,5 +125,7 @@ MonoBehaviour:
   itemObjectPrefab: {fileID: 8185125044590842894}
   canInteractItemList:
   - {fileID: 8185125044590842894, guid: 2509fd88c09681f46b0873fd62c6ac1f, type: 3}
+  - {fileID: 8185125044590842894}
   combinedItemPrefabList:
   - {fileID: 8185125044590842894, guid: 38636760e28433f4d88f625357900167, type: 3}
+  - {fileID: 8185125044590842894, guid: 17a7b77187601f44d8ebde6eab83014a, type: 3}
