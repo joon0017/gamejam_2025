@@ -42,4 +42,5 @@ check legitimacy.
     }
 
     public abstract GameObject GetCombinedItem(GameObject itemObject);
+    public abstract void ItemUniqueEffect();
 } 

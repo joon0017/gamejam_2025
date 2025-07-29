@@ -8,4 +8,8 @@ public class AItem : Item
              canInteractItemList[0].GetComponent<Item>().itemName) return combinedItemPrefabList[0];
         return null;
     }
+    public override void ItemUniqueEffect()
+    {
+        throw new NotImplementedException("Not implemented");
+    }
 }

@@ -7,4 +7,8 @@ public class CItem : Item
     {
         throw new NotImplementedException("DItem does not support combination.");
     }
+    public override void ItemUniqueEffect()
+    {
+        throw new NotImplementedException("Not implemented");
+    }
 }
