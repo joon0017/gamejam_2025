@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5897255828444279528}
   - component: {fileID: -6715349694470591589}
   m_Layer: 0
-  m_Name: Door
+  m_Name: 3D Door
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
