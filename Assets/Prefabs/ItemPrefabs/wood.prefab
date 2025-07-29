@@ -96,9 +96,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 564133471927690690}
+  - component: {fileID: 2104003856806881701}
+  - component: {fileID: 2212144784858007890}
   m_Layer: 0
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,10 +114,49 @@ Transform:
   m_GameObject: {fileID: 3444390495346293164}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00213, y: 0, z: -0.78571}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5719171192531450297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2104003856806881701
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444390495346293164}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0.03, y: 0, z: 0.79}
+--- !u!114 &2212144784858007890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444390495346293164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6422dc3604edb1b4298de89b04466cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Wood
+  itemObjectPrefab: {fileID: 3444390495346293164}
+  canInteractItemList:
+  - {fileID: 3614322141759042804, guid: 1c49428f0a1d5a547abbbe83f9c8a942, type: 3}
+  combinedItemPrefabList:
+  - {fileID: 3580347676304787649, guid: 42fb7a0893fccf142875d80b424598d9, type: 3}

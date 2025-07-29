@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class AItem : Item
+public class MaterialItem : Item
 {
     public override GameObject GetCombinedItem(GameObject itemObject){
         if (itemObject.GetComponent<Item>().itemName ==
