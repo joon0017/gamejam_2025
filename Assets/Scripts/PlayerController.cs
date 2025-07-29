@@ -106,7 +106,7 @@ The player is able to pickup anything if not holding anything.
         if (other.CompareTag("Obstacle"))
         {
             nearbyObstacle = other.gameObject;
-            // Debug.Log("벽 접촉");
+            Debug.Log("벽 접촉");
         }
     }
 
@@ -121,7 +121,7 @@ The player is able to pickup anything if not holding anything.
         if (other.CompareTag("Obstacle") && other.gameObject == nearbyObstacle)
         {
             nearbyObstacle = null;
-            // Debug.Log("벽 이탈");
+            Debug.Log("벽 이탈");
         }
     }
 
