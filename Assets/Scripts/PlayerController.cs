@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class PlayerController : MonoBehaviour
     private GameObject nearbyItem = null;   // item object를 저장할 변수
     private GameObject nearbyObstacle = null;   // 벽 접촉 여부를 판별해줄 변수 
 
+    [SerializeField] public float fadeInDuration;            // 페이드 인 지속 시간
+    [SerializeField] public float stayDuration;              // 완전히 보인 후 유지 시간
+    [SerializeField] public float fadeOutDuration;           // 페이드 아웃 지속 시간
+    [SerializeField] private GameObject[] whoIsFirst;       // 순서대로 등장할 오브젝트들
 
     void Update()
     {
@@ -15,14 +20,21 @@ public class PlayerController : MonoBehaviour
         Interact();
     }
 
-    private void Move(){
-        rigid.linearVelocity = new Vector3(InputManager.Instance.move.x*speed,0,InputManager.Instance.move.y*speed);
+    private void Move()
+    {
+        rigid.linearVelocity = new Vector3(InputManager.Instance.move.x * speed, 0, InputManager.Instance.move.y * speed);
     }
 
     private void Interact()
     {
         if (InputManager.Instance.interact)
         {
+            if (nearbyItem == null && nearbyObstacle == null)
+            {
+                // Debug.Log("I cant 상호작용..");
+                // 여기에 물음표 일시적으로 표시되고 사라지는 메서드 적으면 됨
+                TriggerSequence();
+            }
             InputManager.Instance.interact = false;
             // 1. 아이템 상호작용
             if (nearbyItem)
@@ -39,7 +51,7 @@ public class PlayerController : MonoBehaviour
                         Destroy(nearbyItem);
                         newItem.GetComponent<Item>().PickupItem(gameObject);
                         SetCurrentItem(newItem);
-                        if(newItem.GetComponent<Item>().itemName == "Torch") gameObject.GetComponent<FieldOfViewChanger>().LargeFOV();
+                        if (newItem.GetComponent<Item>().itemName == "Torch") gameObject.GetComponent<FieldOfViewChanger>().LargeFOV();
                         Debug.Log("new item created");
                     }
                     else
@@ -72,27 +84,33 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Cannot pass door because player is not holding Torch item");
+                // Debug.Log("Cannot pass door because player is not holding Torch item");
             }
+        }
+        else
+        {
+            // Debug.Log("I have not any item..");
         }
     }
 
-/*
-Check if it is possible to pick up the item in parameter.
-if the player is not holding an item, the default return value is true. 
-The player is able to pickup anything if not holding anything.
-*/
+    /*
+    Check if it is possible to pick up the item in parameter.
+    if the player is not holding an item, the default return value is true. 
+    The player is able to pickup anything if not holding anything.
+    */
     private bool CanPickup(GameObject item)
     {
-        if(currentItem) {
+        if (currentItem)
+        {
             Debug.Log("Currently holding an item... check if can pick up another");
             return currentItem.GetComponent<Item>().CanPickup(item);
         }
-        
+
         return true;
     }
 
-    private void SetCurrentItem(GameObject item){
+    private void SetCurrentItem(GameObject item)
+    {
         currentItem = item;
     }
 
@@ -124,6 +142,44 @@ The player is able to pickup anything if not holding anything.
             nearbyObstacle = null;
             // Debug.Log("벽 이탈");
         }
+    }
+
+    // question Mark
+    public void TriggerSequence()
+    {
+        // Debug.Log("TriggerSequence 실행됨");
+        StopAllCoroutines();
+        StartSequence();
+    }
+
+    private void StartSequence()
+    {
+        StartCoroutine(onAndoff(whoIsFirst[0]));
+        StartCoroutine(onAndoff(whoIsFirst[1]));
+        StartCoroutine(onAndoff(whoIsFirst[2]));
+    }
+    private IEnumerator onAndoff(GameObject obj)
+    {
+        if (obj == null)
+            yield break;
+        obj.SetActive(true);
+        // Fade In
+        float timer = 0f;
+        while (timer < fadeInDuration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        // Stay
+        yield return new WaitForSeconds(stayDuration);
+        // Fade Out
+        timer = 0f;
+        while (timer < fadeOutDuration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        obj.SetActive(false);
     }
 
 }
