@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
                         Destroy(nearbyItem);
                         newItem.GetComponent<Item>().PickupItem(gameObject);
                         SetCurrentItem(newItem);
+                        if(newItem.GetComponent<Item>().itemName == "Torch") gameObject.GetComponent<FieldOfViewChanger>().LargeFOV();
                         Debug.Log("new item created");
                     }
                     else
@@ -61,17 +62,17 @@ public class PlayerController : MonoBehaviour
             if (nearbyObstacle && currentItem != null)
             {
                 // Debug.Log("벽이랑 상호작용 시작");
-                if (currentItem.GetComponent<Item>().itemName == "D")
+                if (currentItem.GetComponent<Item>().itemName == "Torch")
                 {
-                    currentItem.GetComponent<DItem>().setUniqueItem(nearbyObstacle);
-                    currentItem.GetComponent<DItem>().ItemUniqueEffect();
+                    currentItem.GetComponent<InteractiveItem>().SetUniqueItem(nearbyObstacle);
+                    currentItem.GetComponent<InteractiveItem>().ItemUniqueEffect();
                     Destroy(currentItem);
                 }
                 // Debug.Log("벽이랑 상호작용 끝");
             }
             else
             {
-                Debug.Log("Cannot pass door because player is not holding D item");
+                Debug.Log("Cannot pass door because player is not holding Torch item");
             }
         }
     }
