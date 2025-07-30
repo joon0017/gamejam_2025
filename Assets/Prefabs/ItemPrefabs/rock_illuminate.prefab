@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 3444390495346293164, guid: 10fee89016d875f458ee03304fe5f35d, type: 3}
   combinedItemPrefabList:
   - {fileID: 3580347676304787649, guid: 42fb7a0893fccf142875d80b424598d9, type: 3}
+  lightComponent: {fileID: 8667583222947319362}
 --- !u!114 &4323007791543186612
 MonoBehaviour:
   m_ObjectHideFlags: 0

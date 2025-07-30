@@ -1640,6 +1640,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c65625e040ac42e46ba4222b69c41558, type: 3}
+--- !u!1 &1220228732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 432148375323730981, guid: 10fee89016d875f458ee03304fe5f35d, type: 3}
+  m_PrefabInstance: {fileID: 1479772434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1226807626
 GameObject:
   m_ObjectHideFlags: 0
@@ -6522,11 +6527,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 564133471927690690, guid: 10fee89016d875f458ee03304fe5f35d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.69
+      value: 11.43
       objectReference: {fileID: 0}
     - target: {fileID: 564133471927690690, guid: 10fee89016d875f458ee03304fe5f35d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.74
+      value: -0.872
       objectReference: {fileID: 0}
     - target: {fileID: 564133471927690690, guid: 10fee89016d875f458ee03304fe5f35d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6560,6 +6565,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2212144784858007890, guid: 10fee89016d875f458ee03304fe5f35d, type: 3}
+      propertyPath: lightComponent
+      value: 
+      objectReference: {fileID: 1220228732}
     - target: {fileID: 3444390495346293164, guid: 10fee89016d875f458ee03304fe5f35d, type: 3}
       propertyPath: m_Name
       value: wood_illuminate

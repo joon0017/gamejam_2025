@@ -8,6 +8,7 @@ public abstract class Item : MonoBehaviour
     // [SerializeField] protected GameObject[] cannotInteractItemList; // no need
     [SerializeField] protected GameObject[] canInteractItemList;    
     [SerializeField] protected GameObject[] combinedItemPrefabList;
+    [SerializeField] protected GameObject lightComponent;
 
 /*
 Function for picking up Items in general. This function does not
@@ -18,6 +19,12 @@ check legitimacy.
         gameObject.transform.SetParent(player.transform);
         gameObject.transform.localPosition = new Vector3(-1,1,0);
         gameObject.tag = "Untagged";
+
+        //if the item has a light component, disable it
+        if (lightComponent != null)
+        {
+            lightComponent.SetActive(false);
+        }
 
         //remove collider
         SphereCollider col = gameObject.GetComponent<SphereCollider>();
