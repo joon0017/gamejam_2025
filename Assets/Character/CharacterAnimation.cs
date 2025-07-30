@@ -3,7 +3,7 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    private string lastState;
+    private string lastState = "isWalkLeft";
     void Start(){
         anim = gameObject.GetComponent<Animator>();
     }
