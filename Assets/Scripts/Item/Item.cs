@@ -9,6 +9,7 @@ public abstract class Item : MonoBehaviour
     [SerializeField] protected GameObject[] canInteractItemList;    
     [SerializeField] protected GameObject[] combinedItemPrefabList;
     [SerializeField] protected GameObject lightComponent;
+    [SerializeField] protected GameObject sparkleEffect;
 
 /*
 Function for picking up Items in general. This function does not
@@ -24,6 +25,12 @@ check legitimacy.
         if (lightComponent != null)
         {
             lightComponent.SetActive(false);
+        }
+
+        //if the item has a sparkle effect, disable it
+        if (sparkleEffect != null)
+        {
+            sparkleEffect.SetActive(false);
         }
 
         //remove collider
